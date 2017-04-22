@@ -9,6 +9,7 @@ planet.orbit_position = 0
 planet.orbital_speed = 0
 planet.rotation = 0
 planet.rotational_speed = 0
+planet.boost = false
 
 function planet.initialize(orbit, sun, orbit_position, orbital_speed, rotation, rotational_speed)
   planet.orbit = orbit
@@ -21,8 +22,15 @@ end
 
 function planet.update(dt)
   local two_pi = math.pi * 2
+  local real_orbital_speed
   
-  planet.orbit_position = planet.orbit_position + planet.orbital_speed * dt
+  if planet.boost then
+    real_orbital_speed = planet.orbital_speed * 2
+  else
+    real_orbital_speed = planet.orbital_speed
+  end
+  
+  planet.orbit_position = planet.orbit_position + real_orbital_speed * dt
   
   if planet.orbit_position > two_pi then
     planet.orbit_position = planet.orbit_position - two_pi

@@ -32,6 +32,9 @@ function player.update(dt)
   if player.elevation < 0 then
     player.elevation = 0
     player.vertical_speed = 0
+    player.planet.boost = false
+  else
+    player.planet.boost = true
   end
   
   if love.keyboard.isDown(player.controls.left) then
