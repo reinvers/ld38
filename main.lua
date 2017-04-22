@@ -25,6 +25,29 @@ function love.load()
     math.pi * 0.75
   }
   
+  local player_controls = {
+    {
+      jump = 'up',
+      left = 'left',
+      right = 'right'
+    },
+    {
+      jump = 'w',
+      left = 'a',
+      right = 'd'
+    },
+    {
+      jump = 't',
+      left = 'f',
+      right = 'h'
+    },
+    {
+      jump = 'i',
+      left = 'j',
+      right = 'l'
+    }
+  }
+  
   for i = 1, player_count do
     orbits[i] = dofile 'orbit.lua'
     planets[i] = dofile 'planet.lua'
@@ -32,7 +55,7 @@ function love.load()
     
     orbits[i].initialize(sun, 1, 1, 0, orbit_offsets[i][1], orbit_offsets[i][2])
     planets[i].initialize(orbits[i], sun, planet_positions[i], 1, 0, math.pi)
-    players[i].initialize(planets[i], planet_positions[i])
+    players[i].initialize(planets[i], planet_positions[i], player_controls[i])
   end
 end
 
@@ -57,7 +80,7 @@ function love.draw()
   sun.draw()
   
   for i = 1, player_count do
-    --orbits[i].draw()
+    orbits[i].draw()
   end
   
   for i = 1, player_count do
