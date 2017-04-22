@@ -11,14 +11,28 @@ local bg_image = love.graphics.newImage('images/bg.png')
 function love.load()
   love.graphics.setBackgroundColor(10, 20, 50)
   
+  local orbit_offsets = {
+    {50, 50},
+    {50, -50},
+    {-50, -50},
+    {-50, 50}
+  }
+  
+  local planet_positions = {
+    math.pi * 0.25,
+    math.pi * 1.75,
+    math.pi * 1.25,
+    math.pi * 0.75
+  }
+  
   for i = 1, player_count do
     orbits[i] = dofile 'orbit.lua'
     planets[i] = dofile 'planet.lua'
     players[i] = dofile 'player.lua'
     
-    orbits[i].initialize(sun, 0.75 + love.math.random() * 0.5, 0.75 + love.math.random() * 0.5, love.math.random(math.pi * 2), math.random(-50, 50), math.random(-50, 50))
-    planets[i].initialize(orbits[i], sun, love.math.random() * math.pi * 2, 0.75 + love.math.random() * 0.5, love.math.random() * math.pi * 2, math.pi + love.math.random() * 0.5)
-    players[i].initialize(planets[i], love.math.random() * math.pi * 2)
+    orbits[i].initialize(sun, 1, 1, 0, orbit_offsets[i][1], orbit_offsets[i][2])
+    planets[i].initialize(orbits[i], sun, planet_positions[i], 1, 0, math.pi)
+    players[i].initialize(planets[i], planet_positions[i])
   end
 end
 
@@ -42,16 +56,12 @@ function love.draw()
   
   sun.draw()
   
-  --[[for i = 1, player_count do
-    orbits[i].draw()
+  for i = 1, player_count do
+    --orbits[i].draw()
   end
   
   for i = 1, player_count do
     planets[i].draw()
     players[i].draw()
-  end]]--
-  
-  --orbits[1].draw()
-  planets[1].draw()
-  players[1].draw()
+  end
 end
