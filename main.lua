@@ -6,6 +6,8 @@ local players = {}
 
 local player_count = 4
 
+local bg_image = love.graphics.newImage('images/bg.png')
+
 function love.load()
   love.graphics.setBackgroundColor(10, 20, 50)
   
@@ -21,6 +23,8 @@ function love.load()
 end
 
 function love.update(dt)
+  sun.update(dt)
+  
   for i = 1, player_count do
     planets[i].update(dt)
     players[i].update(dt)
@@ -28,11 +32,20 @@ function love.update(dt)
 end
 
 function love.draw()
+  love.graphics.draw(bg_image)
+  
   sun.draw()
   
-  for i = 1, player_count do
+  --[[for i = 1, player_count do
     orbits[i].draw()
+  end
+  
+  for i = 1, player_count do
     planets[i].draw()
     players[i].draw()
-  end
+  end]]--
+  
+  orbits[1].draw()
+  planets[1].draw()
+  players[1].draw()
 end
