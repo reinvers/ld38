@@ -4,7 +4,7 @@ local planet = require 'planet'
 
 function love.load()
   love.graphics.setBackgroundColor(10, 20, 50)
-  orbit.initialize(0.75, 1.25, 0)
+  orbit.initialize(0.75, 1.25, 1)
   planet.initialize(orbit)
 end
 
