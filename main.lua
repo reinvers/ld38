@@ -1,6 +1,7 @@
 local sun = require 'sun'
 local orbit = require 'orbit'
 local planet = require 'planet'
+local player = require 'player'
 
 function love.load()
   love.graphics.setBackgroundColor(10, 20, 50)
@@ -16,4 +17,5 @@ function love.draw()
   sun.draw()
   orbit.draw()
   planet.draw()
+  player.draw()
 end
