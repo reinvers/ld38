@@ -19,7 +19,7 @@ function player.update(dt)
 end
 
 function player.draw()
-  love.graphics.draw(player.image, player.planet.x, player.planet.y, player.rotation, 1, 1, player.image:getWidth() / 2, player.image:getHeight())
+  love.graphics.draw(player.image, player.planet.x, player.planet.y, player.rotation, 1, 1, player.image:getWidth() / 2, player.image:getHeight() + player.planet.image:getHeight() / 2)
 end
 
 return player
