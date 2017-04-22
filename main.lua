@@ -2,7 +2,7 @@ local sun = require 'sun'
 local orbit = require 'orbit'
 
 function love.load()
-  orbit.initialize(200)
+  orbit.initialize(150, 250)
 end
 
 function love.draw()
