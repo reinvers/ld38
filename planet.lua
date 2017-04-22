@@ -10,10 +10,12 @@ planet.orbital_speed = 0
 planet.rotation = 0
 planet.rotational_speed = 0
 
-function planet.initialize(orbit, sun, orbital_speed, rotational_speed)
+function planet.initialize(orbit, sun, orbit_position, orbital_speed, rotation, rotational_speed)
   planet.orbit = orbit
   planet.sun = sun
+  planet.orbit_position = orbit_position
   planet.orbital_speed = orbital_speed
+  planet.rotation = rotation
   planet.rotational_speed= rotational_speed
 end
 

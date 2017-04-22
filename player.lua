@@ -4,8 +4,9 @@ player.image = love.graphics.newImage('images/player.png')
 player.planet = nil
 player.rotation = 0
 
-function player.initialize(planet)
+function player.initialize(planet, rotation)
   player.planet = planet
+  player.rotation = rotation
 end
 
 function player.update(dt)
