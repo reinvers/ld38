@@ -22,6 +22,12 @@ function love.load()
   end
 end
 
+function love.keypressed(key)
+  for i = 1, player_count do
+    players[i].keypressed(key)
+  end
+end
+
 function love.update(dt)
   sun.update(dt)
   
@@ -45,7 +51,7 @@ function love.draw()
     players[i].draw()
   end]]--
   
-  orbits[1].draw()
+  --orbits[1].draw()
   planets[1].draw()
   players[1].draw()
 end
