@@ -70,7 +70,20 @@ function love.update(dt)
   
   for i = 1, player_count do
     planets[i].update(dt)
-    players[i].update(dt)
+    
+    if not players[i].dead then
+      players[i].update(dt)
+    end
+  end
+  
+  for i = 1, player_count do
+    for j = 1, player_count do
+      if (not players[i].dead) and i ~= j then
+        if players[i].is_attacking(players[j]) then
+          players[j].dead = true
+        end
+      end
+    end
   end
 end
 
@@ -85,6 +98,9 @@ function love.draw()
   
   for i = 1, player_count do
     planets[i].draw()
-    players[i].draw()
+    
+    if not players[i].dead then
+      players[i].draw()
+    end
   end
 end
